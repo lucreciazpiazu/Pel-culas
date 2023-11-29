@@ -5,13 +5,6 @@ const supabaseUrl = 'https://lfhawxlohwazxxudesjl.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxmaGF3eGxvaHdhenh4dWRlc2psIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTcwMTExMDY5MywiZXhwIjoyMDE2Njg2NjkzfQ.vsoHUQqVvZ7Zzy8CyxpgYUCbpqm0gYpA_WNHABjMZ2s';
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-// MODELO DE DATOS
-let mis_peliculas_iniciales = [
-    {titulo: "Interstellar",  director: "Christopher Nolan", "miniatura": "files/interstellar.png"},
-    {titulo: "Jurassic Park", director: "Steven Spielberg", "miniatura": "files/jurassicpark.png"},
-    {titulo: "Superlópez",   director: "Javier Ruiz Caldera", "miniatura": "files/superlopez.png"}
-];
-
 // VISTAS
 const indexView = (peliculas) => {
     let i = 0;
@@ -33,7 +26,7 @@ const indexView = (peliculas) => {
             </div>
         </div>\n`;
         i = i + 1;
-    };
+    }
 
     view += `<div class="actions">
                 <button class="new">añadir</button>
