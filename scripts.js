@@ -12,15 +12,6 @@ let mis_peliculas_iniciales = [
     {titulo: "Superlópez",   director: "Javier Ruiz Caldera", "miniatura": "files/superlopez.png"}
 ];
 
-const peliculas = supabase.channel('custom-all-channel')
-  .on(
-    'postgres_changes',
-    { event: '*', schema: 'public', table: 'peliculas' },
-    (payload) => {
-      console.log('Change received!', payload)
-    }
-  )
-  .subscribe()
 
 // Verificar si ya hay datos en Supabase, si no, insertar los datos iniciales
 async function setupSupabase() {
