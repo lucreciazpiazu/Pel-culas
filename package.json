@@ -8,12 +8,5 @@
         "serverUrl": "https://autocorector.dit.upm.es/",
         "courseId": "1",
         "assignmentId": "2"
-    },
-    "dependencies": {
-        "@supabase/supabase-js": "^1.0.0"
-        // Otras dependencias
-    },
-    "devDependencies": {
-        // Dependencias de desarrollo (si las tienes)
     }
 }
