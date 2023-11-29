@@ -12,7 +12,7 @@ let mis_peliculas_iniciales = [
     {titulo: "Superlópez",   director: "Javier Ruiz Caldera", "miniatura": "files/superlopez.png"}
 ];
 
-// Verificar si ya hay datos en Supabase, si no, insertar los datos iniciales
+// ...
 async function setupSupabase() {
     try {
         const { data, error } = await supabase.from('peliculas').select('*');
@@ -26,9 +26,11 @@ async function setupSupabase() {
             await supabase.from('peliculas').insert(mis_peliculas_iniciales);
         }
     } catch (error) {
-        console.error('Error durante la configuración de Supabase:', error.message);
+        console.error('Error durante la configuración de Supabase:', error);
     }
 }
+// ...
+
 
 // VISTAS
 const indexView = (peliculas) => {
