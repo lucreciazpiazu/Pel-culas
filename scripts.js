@@ -2,8 +2,8 @@ npm install @supabase/supabase-js
 import { createClient } from '@supabase/supabase-js';
 
 // Configura Supabase con tus credenciales
-const supabaseUrl = 'https://lfhawxlohwazxxudesjl.supabase.co';
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxmaGF3eGxvaHdhenh4dWRlc2psIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTcwMTExMDY5MywiZXhwIjoyMDE2Njg2NjkzfQ.vsoHUQqVvZ7Zzy8CyxpgYUCbpqm0gYpA_WNHABjMZ2s';
+const supabaseUrl = 'https://lfepjfbynjdipsesbtdc.supabase.co';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxmZXBqZmJ5bmpkaXBzZXNidGRjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDEyNTgzMDAsImV4cCI6MjAxNjgzNDMwMH0.ZN5u1xj78Te7peGHBnpHGpPI85ZCsA5XjtaKwh2x7j8';
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 // MODELO DE DATOS
