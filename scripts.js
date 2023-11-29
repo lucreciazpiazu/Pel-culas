@@ -2,7 +2,7 @@ import { createClient } from '@supabase/supabase-js';
 
 // Configura Supabase con tus credenciales
 const supabaseUrl = 'https://lfepjfbynjdipsesbtdc.supabase.co';
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxmZXBqZmJ5bmpkaXBzZXNidGRjIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTcwMTI1ODMwMCwiZXhwIjoyMDE2ODM0MzAwfQ.ZwFKdV1kIUtUL2QAp4aJrhBaxw7XxpgcAyWf-0JicHc';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxmZXBqZmJ5bmpkaXBzZXNidGRjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDEyNTgzMDAsImV4cCI6MjAxNjgzNDMwMH0.ZN5u1xj78Te7peGHBnpHGpPI85ZCsA5XjtaKwh2x7j8';
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 // MODELO DE DATOS
