@@ -13,22 +13,27 @@ let mis_peliculas_iniciales = [
 ];
 
 // Verificar si ya hay datos en Supabase, si no, insertar los datos iniciales
-async function setupSupabase() {
+async function verifyInitialData() {
     try {
-        const { data, error } = await supabase.from('peliculas').select('*');
+        const { data: peliculas, error } = await supabase.from('peliculas').select('*');
 
         if (error) {
             throw error;
         }
 
-        if (!data || data.length === 0) {
-            // Insertar datos iniciales
+        if (!peliculas || peliculas.length === 0) {
+            // Insertar datos iniciales si no hay datos
             await supabase.from('peliculas').insert(mis_peliculas_iniciales);
         }
     } catch (error) {
-        console.error('Error durante la configuración de Supabase:', error.message);
+        console.error('Error al verificar los datos iniciales:', error.message);
     }
 }
+
+// Llama a esta función antes de inicializar la aplicación
+await verifyInitialData();
+
+// Resto del código...
 
 // VISTAS
 const indexView = (peliculas) => {
