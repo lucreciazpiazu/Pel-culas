@@ -5,6 +5,31 @@ const supabaseUrl = 'https://lfhawxlohwazxxudesjl.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxmaGF3eGxvaHdhenh4dWRlc2psIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTcwMTExMDY5MywiZXhwIjoyMDE2Njg2NjkzfQ.vsoHUQqVvZ7Zzy8CyxpgYUCbpqm0gYpA_WNHABjMZ2s';
 const supabase = createClient(supabaseUrl, supabaseKey);
 
+// MODELO DE DATOS
+let mis_peliculas_iniciales = [
+    {titulo: "Interstellar",  director: "Christopher Nolan", "miniatura": "files/interstellar.png"},
+    {titulo: "Jurassic Park", director: "Steven Spielberg", "miniatura": "files/jurassicpark.png"},
+    {titulo: "Superlópez",   director: "Javier Ruiz Caldera", "miniatura": "files/superlopez.png"}
+];
+
+// Verificar si ya hay datos en Supabase, si no, insertar los datos iniciales
+async function setupSupabase() {
+    try {
+        const { data, error } = await supabase.from('peliculas').select('*');
+
+        if (error) {
+            throw error;
+        }
+
+        if (!data || data.length === 0) {
+            // Insertar datos iniciales
+            await supabase.from('peliculas').insert(mis_peliculas_iniciales);
+        }
+    } catch (error) {
+        console.error('Error durante la configuración de Supabase:', error.message);
+    }
+}
+
 // VISTAS
 const indexView = (peliculas) => {
     let i = 0;
@@ -102,6 +127,8 @@ const newView = () => {
 // CONTROLADORES 
 const indexContr = async () => {
     try {
+        await setupSupabase();
+
         const { data: peliculas, error } = await supabase.from('peliculas').select('*');
         
         if (error) {
@@ -222,12 +249,7 @@ const resetContr = async () => {
     try {
         let confirmacion = confirm("¿Estás seguro de que quieres restaurar las películas originales?");
         if (confirmacion) {
-            const { data: resetPeliculas, error } = await supabase.from('peliculas').upsert(mis_peliculas_iniciales);
-            
-            if (error) {
-                throw error;
-            }
-
+            await supabase.from('peliculas').upsert(mis_peliculas_iniciales);
             indexContr();
         }
     } catch (error) {
@@ -240,15 +262,16 @@ const matchEvent = (ev, sel) => ev.target.matches(sel);
 const myId = (ev) => Number(ev.target.dataset.myId);
 
 document.addEventListener('click', ev => {
-    if      (matchEvent(ev, '.index'))  indexContr  ();
-    else if (matchEvent(ev, '.edit'))   editContr   (myId(ev));
-    else if (matchEvent(ev, '.update')) updateContr (myId(ev));
-    else if (matchEvent(ev, '.delete')) deleteContr (myId(ev));
-    else if (matchEvent(ev, '.reset'))  resetContr  ();
-    else if (matchEvent(ev, '.show'))   showContr   (myId(ev));
-    else if (matchEvent(ev, '.new'))    newContr    ();
-    else if (matchEvent(ev, '.create')) createContr ();
+    if (matchEvent(ev, '.index'))  indexContr();
+    else if (matchEvent(ev, '.edit'))   editContr(myId(ev));
+    else if (matchEvent(ev, '.update')) updateContr(myId(ev));
+    else if (matchEvent(ev, '.delete')) deleteContr(myId(ev));
+    else if (matchEvent(ev, '.reset'))  resetContr();
+    else if (matchEvent(ev, '.show'))   showContr(myId(ev));
+    else if (matchEvent(ev, '.new'))    newContr();
+    else if (matchEvent(ev, '.create')) createContr();
 });
 
 // Inicialización
 document.addEventListener('DOMContentLoaded', indexContr);
+
