@@ -9,10 +9,10 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^1.0.0",
-    // Otras dependencias
+
   },
   "devDependencies": {
-    // Dependencias de desarrollo (si las tienes)
+
   },
   "keywords": [],
   "author": "ging-moocs",
